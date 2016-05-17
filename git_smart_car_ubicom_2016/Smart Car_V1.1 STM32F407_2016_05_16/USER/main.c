@@ -1,30 +1,24 @@
-#include "stm32f4xx.h"
+#include "sys.h"
 #include "usart.h"
 #include "delay.h"
 #include "led.h" 
+#include "pwm.h"
 
 int main(void)
 {
-	uart_init(115200);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置系统中断优先级分组2
 	delay_init(168);
-	LED_Init();
-	
+	uart_init(115200);
+
+ 	TIM14_PWM_Init(500-1,84-1);	//84M/84=1Mhz的计数频率,重装载值500，所以PWM频率为 1M/500=2Khz.
+
+	TIM_SetCompare1(TIM14,200);	//修改比较值，修改占空比	
   while(1)
 	{
-		LED1 = 0;
-		LED2 = 0;
-		LED3 = 0;
-		LED4 = 0;
-		LED5 = 0;
-		delay_ms(500);
-		LED1 = 1;
-		LED2 = 1;
-		LED3 = 1;
-		LED4 = 1;
-		LED5 = 1;
-		delay_ms(500);
+		;
 	}
 }
+
 
 
 
