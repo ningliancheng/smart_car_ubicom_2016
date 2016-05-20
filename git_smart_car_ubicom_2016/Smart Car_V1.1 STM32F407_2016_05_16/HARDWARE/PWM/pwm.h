@@ -4,4 +4,5 @@
 	
 void TIM2_PWM_CH1_Init(u32 arr,u32 psc);
 void TIM2_PWM_CH2_Init(u32 arr,u32 psc);
+void PWM_MOTOR_Cfg(void);
 #endif
